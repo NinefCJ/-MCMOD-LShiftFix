@@ -22,7 +22,7 @@ import java.net.URL;
  */
 public final class UpdateChecker {
 
-    private static final String MODRINTH_ID = "vxJbizDU";
+    private static final String MODRINTH_ID = "lshiftfix";
     private static final String API_URL = "https://api.modrinth.com/v2/project/" + MODRINTH_ID + "/version";
 
     private static volatile String latestVersion = null;
