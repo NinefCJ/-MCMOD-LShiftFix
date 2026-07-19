@@ -153,7 +153,8 @@ jar {
 
 // ----------------------------------------------------------------------------
 // Reobfuscation: produce a production-ready (SRG-named) jar.
-// Explicitly bind to the jar task so the SRG-named artifact is always produced.
+// Bind reobfJar to run after jar (NOT after build, which causes a circular
+// dependency: assemble -> reobfJar -> build -> assemble).
 // ----------------------------------------------------------------------------
 reobf {
     jar {}
@@ -174,7 +175,7 @@ project.afterEvaluate {
         }
     }
 }
-build.finalizedBy 'reobfJar'
+jar.finalizedBy 'reobfJar'
 
 // ----------------------------------------------------------------------------
 // Dev convenience: ensure run dir exists (only when a run task is present).
