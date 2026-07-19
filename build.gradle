@@ -157,7 +157,10 @@ reobf {
 build.finalizedBy 'reobfJar'
 
 // ----------------------------------------------------------------------------
-// Dev convenience: ensure run dir exists.
+// Dev convenience: ensure run dir exists (only when a run task is present).
+// ForgeGradle 2.1 does not expose a 'prepareRuns' task, so we wire the hook
+// defensively in afterEvaluate to avoid breaking projects where the run task
+// has a different name.
 // ----------------------------------------------------------------------------
 task ensureRunDir {
     doLast {
@@ -165,4 +168,9 @@ task ensureRunDir {
         if (!runDir.exists()) runDir.mkdirs()
     }
 }
-prepareRuns.dependsOn ensureRunDir
+afterEvaluate {
+    def runTask = tasks.findByName('prepareRuns') ?: tasks.findByName('runClient')
+    if (runTask != null) {
+        runTask.dependsOn ensureRunDir
+    }
+}
