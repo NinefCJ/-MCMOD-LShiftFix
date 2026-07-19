@@ -97,7 +97,8 @@ repositories {
 dependencies {
     // MixinBooter is provided at runtime by the end user (dropped into /mods).
     // We only need it on the compile classpath; do NOT bundle it into the jar.
-    deobfProvided "com.cleanroommc:mixinbooter:${project.mixinbooter_version}"
+    // Correct maven coords: zone.rong:mixinbooter (hosted on CleanroomMC maven)
+    deobfProvided "zone.rong:mixinbooter:${project.mixinbooter_version}"
 
     // JUnit 4 for the pure-logic unit tests under src/test/java.
     testCompile 'junit:junit:4.12'
