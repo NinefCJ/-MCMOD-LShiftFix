@@ -81,7 +81,7 @@ public class CommandLShiftFix extends CommandBase {
     }
 
     @Override
-    public List<String> getTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
+    public List<String> addTabCompletionOptions(ICommandSender sender, String[] args, BlockPos pos) {
         if (args.length == 1) {
             return getListOfStringsMatchingLastWord(args, "status", "reload", "debug", "polling", "guard", "update");
         }
