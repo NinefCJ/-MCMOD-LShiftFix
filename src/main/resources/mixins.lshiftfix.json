@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.ninefyu.lshiftfix.mixin",
+  "version": "1.0.0",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "mixins.lshiftfix.refmap.json",
+  "minVersion": "0.6",
+  "mixins": [],
+  "client": [
+    "MixinEntityPlayerSP",
+    "MixinGuiScreen"
+  ]
+}

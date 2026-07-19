@@ -1,0 +1,53 @@
+# LShiftFix - English (US)
+
+## Config GUI
+gui.lshiftfix.title=LShiftFix Configuration
+gui.lshiftfix.version=v%s
+gui.lshiftfix.debug=Debug logging
+gui.lshiftfix.polling=All-key polling
+gui.lshiftfix.guard=GUI IME guard
+gui.lshiftfix.update_check=Update check
+gui.lshiftfix.reload=Reload from disk
+gui.lshiftfix.save=Save & apply
+gui.lshiftfix.done=Done
+gui.lshiftfix.on=ON
+gui.lshiftfix.off=OFF
+
+## Key bindings
+key.lshiftfix.category=LShiftFix
+key.lshiftfix.toggleDebug=Toggle debug logging
+key.lshiftfix.togglePolling=Toggle all-key polling
+key.lshiftfix.toggleGuard=Toggle GUI IME guard
+
+## Command messages
+command.lshiftfix.status.header=== LShiftFix v%s ===
+command.lshiftfix.status.initialized=Initialized     : %s
+command.lshiftfix.status.debug=Debug logging   : %s
+command.lshiftfix.status.polling=All-key polling : %s
+command.lshiftfix.status.guard=GUI IME guard   : %s
+command.lshiftfix.status.update=Update check   : %s
+command.lshiftfix.status.cooldown=Log cooldown    : %s ticks
+command.lshiftfix.reload.success=Config reloaded from disk.
+command.lshiftfix.toggle.on=ON
+command.lshiftfix.toggle.off=OFF
+command.lshiftfix.toggle.changed=%s is now %s (was %s)
+command.lshiftfix.toggle.usage=Usage: /lshiftfix %s <on|off>
+
+## Compatibility warnings
+compat.lunar=Lunar Client detected — main polling disabled (GUI guard remains active).
+compat.badlion=Badlion Client detected — main polling disabled (GUI guard remains active).
+compat.optifine=OptiFine detected — no conflict expected.
+compat.playerapi=PlayerAPI detected — ensure GUI IME guard is enabled (default).
+
+## Update checker
+update.available=A new version of LShiftFix is available: %s (current: %s). Download from: %s
+update.check_failed=Failed to check for LShiftFix updates (offline?): %s
+
+## Hotkey conflict detection
+hotkey.conflict.warning=Hotkey conflict potential: '%s' is bound to SPACE (key %d). IMEs often intercept Shift+Space / Ctrl+Space.
+hotkey.conflict.summary=Detected %d keybinding(s) that may conflict with IME hotkeys. Consider remapping them in Controls, or disable the IME hotkey in your input method settings.
+hotkey.conflict.none=No IME hotkey conflicts detected among registered keybindings.
+
+## Misc
+misc.initialized=Physical jump-key polling is now active.
+misc.init_summary=v%s initialized. Debug: %s, polling: %s

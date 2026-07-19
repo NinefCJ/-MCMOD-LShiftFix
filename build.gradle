@@ -1,0 +1,166 @@
+// LShiftFix - build.gradle
+// Forge 1.8.9 + MixinBooter build script
+// Author: ninefyu
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url = "https://maven.minecraftforge.net/" }
+        maven { url = "https://repo.spongepowered.org/maven/" }
+        maven { url = "https://maven.cleanroommc.com" }
+    }
+    dependencies {
+        classpath('net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT') {
+            changing = true
+        }
+        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'org.spongepowered.mixin'
+
+// ----------------------------------------------------------------------------
+// Mod identity
+// ----------------------------------------------------------------------------
+version = project.mod_version
+group   = project.mod_group
+archivesBaseName = project.mod_archives_name
+
+sourceCompatibility = targetCompatibility = project.java_version
+compileJava {
+    sourceCompatibility = targetCompatibility = project.java_version
+}
+
+// ----------------------------------------------------------------------------
+// JDK version sanity check. ForgeGradle 2.1 + MixinGradle 0.6 only work on
+// JDK 8. Fail loudly with a helpful message instead of cryptic NPEs later.
+// ----------------------------------------------------------------------------
+gradle.taskGraph.whenReady { graph ->
+    def current = System.getProperty("java.version", "")
+    def major = current.tokenize(".").get(0).toInteger()
+    if (current.startsWith("1.")) {
+        major = current.tokenize(".").get(1).toInteger()
+    }
+    if (major != 8) {
+        def msg = "\n" +
+            "===========================================================\n" +
+            " LShiftFix build requires JDK 8 (ForgeGradle 2.1).\n" +
+            " Detected: JDK ${current}\n" +
+            "-----------------------------------------------------------\n" +
+            " Options:\n" +
+            "   1. Install Adoptium Temurin 8 LTS\n" +
+            "      https://adoptium.net/temurin/releases/?version=8\n" +
+            "   2. Point Gradle at JDK 8 via gradle.properties:\n" +
+            "      org.gradle.java.home=C:/Program Files/Java/jdk1.8.0_xxx/jre\n" +
+            "   3. Use the GitHub Actions CI (already configured for JDK 8).\n" +
+            "===========================================================\n"
+        if (graph.hasTask(build) || graph.hasTask(setupDecompWorkspace) || graph.hasTask(compileJava)) {
+            throw new GradleException(msg)
+        }
+    }
+}
+
+// ----------------------------------------------------------------------------
+// Forge / Minecraft / Mappings
+// ----------------------------------------------------------------------------
+minecraft {
+    version  = "${project.minecraft_version}-${project.forge_version}"
+    runDir   = "run"
+    mappings = project.mappings_version
+
+    // Token replacement for @VERSION@ in the main mod class.
+    replaceIn "src/main/java/com/ninefyu/lshiftfix/LShiftFix.java"
+    replace   "@VERSION@", project.mod_version
+}
+
+// ----------------------------------------------------------------------------
+// Mixin (refmap generation, mixin config declaration)
+// ----------------------------------------------------------------------------
+mixin {
+    add    sourceSets.main, "mixins.lshiftfix.refmap.json"
+    config "mixins.lshiftfix.json"
+}
+
+// ----------------------------------------------------------------------------
+// Repositories & dependencies
+// ----------------------------------------------------------------------------
+repositories {
+    mavenCentral()
+    maven { url = "https://maven.cleanroommc.com" }
+    maven { url = "https://repo.spongepowered.org/maven/" }
+    maven { url = "https://maven.minecraftforge.net/" }
+}
+
+dependencies {
+    // MixinBooter is provided at runtime by the end user (dropped into /mods).
+    // We only need it on the compile classpath; do NOT bundle it into the jar.
+    deobfProvided "com.cleanroommc:mixinbooter:${project.mixinbooter_version}"
+
+    // JUnit 4 for the pure-logic unit tests under src/test/java.
+    testCompile 'junit:junit:4.12'
+}
+
+// ----------------------------------------------------------------------------
+// Test configuration: pure-logic tests do NOT touch Minecraft, so they can
+// run on any JDK without ForgeGradle's setupDecompWorkspace.
+// ----------------------------------------------------------------------------
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+    // Skip tests on JDK < 8 just in case.
+    doFirst {
+        logger.lifecycle("Running LShiftFix unit tests on JDK ${System.getProperty('java.version')}")
+    }
+}
+
+// ----------------------------------------------------------------------------
+// Resource processing: substitute ${version} / ${mcversion} in mcmod.info
+// ----------------------------------------------------------------------------
+processResources {
+    inputs.property "version",   project.mod_version
+    inputs.property "mcversion", project.minecraft_version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.mod_version, 'mcversion': project.minecraft_version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
+
+// ----------------------------------------------------------------------------
+// Jar manifest: declare mixin config so MixinBooter auto-loads it.
+// (No coremod / no MixinTweaker here — MixinBooter owns the bootstrap.)
+// ----------------------------------------------------------------------------
+jar {
+    manifest {
+        attributes(
+            'MixinConfigs': 'mixins.lshiftfix.json'
+        )
+    }
+}
+
+// ----------------------------------------------------------------------------
+// Reobfuscation: produce a production-ready (SRG-named) jar.
+// Explicitly bind to the jar task so the SRG-named artifact is always produced.
+// ----------------------------------------------------------------------------
+reobf {
+    jar {}
+}
+build.finalizedBy 'reobfJar'
+
+// ----------------------------------------------------------------------------
+// Dev convenience: ensure run dir exists.
+// ----------------------------------------------------------------------------
+task ensureRunDir {
+    doLast {
+        def runDir = file("run")
+        if (!runDir.exists()) runDir.mkdirs()
+    }
+}
+prepareRuns.dependsOn ensureRunDir

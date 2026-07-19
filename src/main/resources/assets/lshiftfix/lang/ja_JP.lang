@@ -1,0 +1,53 @@
+# LShiftFix - 日本語
+
+## Config GUI
+gui.lshiftfix.title=LShiftFix 設定
+gui.lshiftfix.version=v%s
+gui.lshiftfix.debug=デバッグログ
+gui.lshiftfix.polling=全キーポーリング
+gui.lshiftfix.guard=GUI IME ガード
+gui.lshiftfix.update_check=アップデート確認
+gui.lshiftfix.reload=ディスクから再読み込み
+gui.lshiftfix.save=保存して適用
+gui.lshiftfix.done=完了
+gui.lshiftfix.on=オン
+gui.lshiftfix.off=オフ
+
+## Key bindings
+key.lshiftfix.category=LShiftFix
+key.lshiftfix.toggleDebug=デバッグログ切替
+key.lshiftfix.togglePolling=全キーポーリング切替
+key.lshiftfix.toggleGuard=GUI IME ガード切替
+
+## Command messages
+command.lshiftfix.status.header=== LShiftFix v%s ===
+command.lshiftfix.status.initialized=初期化状態     : %s
+command.lshiftfix.status.debug=デバッグログ   : %s
+command.lshiftfix.status.polling=全キーポーリング : %s
+command.lshiftfix.status.guard=GUI IME ガード   : %s
+command.lshiftfix.status.update=アップデート確認 : %s
+command.lshiftfix.status.cooldown=ログ間隔       : %s tick
+command.lshiftfix.reload.success=設定をディスクから再読み込みしました。
+command.lshiftfix.toggle.on=オン
+command.lshiftfix.toggle.off=オフ
+command.lshiftfix.toggle.changed=%s が %s になりました（元: %s）
+command.lshiftfix.toggle.usage=使い方: /lshiftfix %s <on|off>
+
+## Compatibility warnings
+compat.lunar=Lunar Client を検出 — メインポーリングを無効化（GUI ガードは有効なまま）。
+compat.badlion=Badlion Client を検出 — メインポーリングを無効化（GUI ガードは有効なまま）。
+compat.optifine=OptiFine を検出 — コンフリクトなし。
+compat.playerapi=PlayerAPI を検出 — GUI IME ガードが有効であることを確認してください（デフォルト有効）。
+
+## Update checker
+update.available=LShiftFix の新しいバージョンがあります: %s（現在: %s）。ダウンロード: %s
+update.check_failed=LShiftFix のバージョン確認に失敗しました（オフライン?）: %s
+
+## Hotkey conflict detection
+hotkey.conflict.warning=ホットキー競合の可能性: '%s' が SPACE（キー %d）に割り当てられています。IME が Shift+Space / Ctrl+Space を横取りすることがあります。
+hotkey.conflict.summary=IME ホットキーと競合する可能性のあるキーバインドが %d 件見つかりました。コントロール設定で割り当てを変更するか、IME のホットキーを無効にしてください。
+hotkey.conflict.none=登録済みキーバインドに IME ホットキーとの競合は見つかりませんでした。
+
+## Misc
+misc.initialized=物理ジャンプキーのポーリングが有効になりました。
+misc.init_summary=v%s 初期化完了。デバッグ: %s、ポーリング: %s

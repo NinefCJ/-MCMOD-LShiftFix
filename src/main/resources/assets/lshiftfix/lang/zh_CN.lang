@@ -1,0 +1,53 @@
+# LShiftFix - 简体中文
+
+## Config GUI
+gui.lshiftfix.title=LShiftFix 配置
+gui.lshiftfix.version=版本 %s
+gui.lshiftfix.debug=调试日志
+gui.lshiftfix.polling=全按键轮询
+gui.lshiftfix.guard=GUI IME 守卫
+gui.lshiftfix.update_check=更新检查
+gui.lshiftfix.reload=从磁盘重新加载
+gui.lshiftfix.save=保存并应用
+gui.lshiftfix.done=完成
+gui.lshiftfix.on=开启
+gui.lshiftfix.off=关闭
+
+## Key bindings
+key.lshiftfix.category=LShiftFix
+key.lshiftfix.toggleDebug=切换调试日志
+key.lshiftfix.togglePolling=切换全按键轮询
+key.lshiftfix.toggleGuard=切换 GUI IME 守卫
+
+## Command messages
+command.lshiftfix.status.header=== LShiftFix v%s ===
+command.lshiftfix.status.initialized=模组初始化     : %s
+command.lshiftfix.status.debug=调试日志       : %s
+command.lshiftfix.status.polling=全按键轮询     : %s
+command.lshiftfix.status.guard=GUI IME 守卫   : %s
+command.lshiftfix.status.update=更新检查       : %s
+command.lshiftfix.status.cooldown=日志冷却时间   : %s 游戏刻
+command.lshiftfix.reload.success=配置已从磁盘重新加载。
+command.lshiftfix.toggle.on=开启
+command.lshiftfix.toggle.off=关闭
+command.lshiftfix.toggle.changed=%s 当前状态: %s（原为 %s）
+command.lshiftfix.toggle.usage=用法: /lshiftfix %s <开启|关闭>
+
+## Compatibility warnings
+compat.lunar=检测到 Lunar Client — 已禁用主轮询（GUI 守卫仍保持激活）。
+compat.badlion=检测到 Badlion Client — 已禁用主轮询（GUI 守卫仍保持激活）。
+compat.optifine=检测到 OptiFine — 预计无冲突。
+compat.playerapi=检测到 PlayerAPI — 请确保 GUI IME 守卫已开启（默认开启）。
+
+## Update checker
+update.available=LShiftFix 有新版本可用: %s（当前: %s）。下载地址: %s
+update.check_failed=LShiftFix 版本检查失败（可能离线）: %s
+
+## Hotkey conflict detection
+hotkey.conflict.warning=热键冲突警告: '%s' 绑定到了 SPACE（键码 %d）。IME 经常拦截 Shift+Space / Ctrl+Space。
+hotkey.conflict.summary=检测到 %d 个可能与 IME 热键冲突的按键绑定。建议在「控制」中重新映射，或在输入法设置中关闭该热键。
+hotkey.conflict.none=在已注册的按键绑定中未检测到 IME 热键冲突。
+
+## Misc
+misc.initialized=物理跳跃键轮询已激活。
+misc.init_summary=v%s 初始化完成。调试: %s，轮询: %s

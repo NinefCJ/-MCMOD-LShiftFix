@@ -1,0 +1,53 @@
+# LShiftFix - 한국어
+
+## Config GUI
+gui.lshiftfix.title=LShiftFix 설정
+gui.lshiftfix.version=v%s
+gui.lshiftfix.debug=디버그 로그
+gui.lshiftfix.polling=전체 키 폴링
+gui.lshiftfix.guard=GUI IME 가드
+gui.lshiftfix.update_check=업데이트 확인
+gui.lshiftfix.reload=디스크에서 다시 로드
+gui.lshiftfix.save=저장 및 적용
+gui.lshiftfix.done=완료
+gui.lshiftfix.on=켜짐
+gui.lshiftfix.off=꺼짐
+
+## Key bindings
+key.lshiftfix.category=LShiftFix
+key.lshiftfix.toggleDebug=디버그 로그 토글
+key.lshiftfix.togglePolling=전체 키 폴링 토글
+key.lshiftfix.toggleGuard=GUI IME 가드 토글
+
+## Command messages
+command.lshiftfix.status.header=== LShiftFix v%s ===
+command.lshiftfix.status.initialized=초기화 상태     : %s
+command.lshiftfix.status.debug=디버그 로그       : %s
+command.lshiftfix.status.polling=전체 키 폴링     : %s
+command.lshiftfix.status.guard=GUI IME 가드     : %s
+command.lshiftfix.status.update=업데이트 확인   : %s
+command.lshiftfix.status.cooldown=로그 간격       : %s 틱
+command.lshiftfix.reload.success=설정이 디스크에서 다시 로드되었습니다.
+command.lshiftfix.toggle.on=켜짐
+command.lshiftfix.toggle.off=꺼짐
+command.lshiftfix.toggle.changed=%s 상태: %s (이전: %s)
+command.lshiftfix.toggle.usage=사용법: /lshiftfix %s <on|off>
+
+## Compatibility warnings
+compat.lunar=Lunar Client 감지됨 — 메인 폴링 비활성화 (GUI 가드는 계속 활성화).
+compat.badlion=Badlion Client 감지됨 — 메인 폴링 비활성화 (GUI 가드는 계속 활성화).
+compat.optifine=OptiFine 감지됨 — 충돌 없음.
+compat.playerapi=PlayerAPI 감지됨 — GUI IME 가드가 활성화되어 있는지 확인하세요 (기본값: 활성화).
+
+## Update checker
+update.available=LShiftFix 새 버전 사용 가능: %s (현재: %s). 다운로드: %s
+update.check_failed=LShiftFix 버전 확인 실패 (오프라인?): %s
+
+## Hotkey conflict detection
+hotkey.conflict.warning=단축키 충돌 가능성: '%s'이 SPACE(키 %d)에 할당됨. IME가 Shift+Space / Ctrl+Space를 가로챌 수 있습니다.
+hotkey.conflict.summary=IME 단축키와 충돌할 수 있는 키 바인딩이 %d개 발견되었습니다. 컨트롤 설정에서 재할당하거나 IME 단축키를 비활성화하세요.
+hotkey.conflict.none=등록된 키 바인딩 중 IME 단축키 충돌이 발견되지 않았습니다.
+
+## Misc
+misc.initialized=물리적 점프 키 폴링이 활성화되었습니다.
+misc.init_summary=v%s 초기화 완료. 디버그: %s, 폴링: %s

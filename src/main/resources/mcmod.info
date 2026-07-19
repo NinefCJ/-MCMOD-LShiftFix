@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "lshiftfix",
+    "name": "LShiftFix",
+    "description": "Forces movement keys to be re-read from physical hardware state every tick, bypassing IME event interception. Compatible with all IMEs (Microsoft Pinyin, Sogou, QQ Pinyin, Google Input, Japanese IME, Korean IME, etc.). Fixes the Shift+Space conflict where sneaking players could not jump. Includes GUI IME guard, multi-key combination protection, hot-reload command, and IME hotkey conflict detection.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://modrinth.com/project/mrp_LX9C9pvxe274wegcmVDLgUOoLwgGwYyY0xWJHJGrXrXne879Xh10yrSgk1w3",
+    "updateUrl": "",
+    "authorList": ["ninefyu"],
+    "credits": "Powered by MixinBooter.",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
