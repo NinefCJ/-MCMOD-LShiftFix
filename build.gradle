@@ -98,7 +98,10 @@ dependencies {
     // MixinBooter is provided at runtime by the end user (dropped into /mods).
     // We only need it on the compile classpath; do NOT bundle it into the jar.
     // Correct maven coords: zone.rong:mixinbooter (hosted on CleanroomMC maven)
-    deobfProvided "zone.rong:mixinbooter:${project.mixinbooter_version}"
+    // Use compileOnly (not deobfProvided) because MixinBooter's jar is already
+    // in dev/MCP naming — ForgeGradle's deobf task fails on it with
+    // IllegalArgumentException.
+    compileOnly "zone.rong:mixinbooter:${project.mixinbooter_version}"
 
     // JUnit 4 for the pure-logic unit tests under src/test/java.
     testCompile 'junit:junit:4.12'
