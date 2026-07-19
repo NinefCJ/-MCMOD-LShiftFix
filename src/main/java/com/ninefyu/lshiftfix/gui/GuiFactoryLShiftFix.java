@@ -23,12 +23,12 @@ public class GuiFactoryLShiftFix implements IModGuiFactory {
     }
 
     @Override
-    public GuiScreen createConfigGui(GuiScreen parentScreen) {
-        return new GuiConfigLShiftFix(parentScreen);
+    public java.util.Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
+        return null;
     }
 
     @Override
-    public java.util.Set<RuntimeOptionCategoryElement> runtimeGuiCategories() {
+    public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) {
         return null;
     }
 }

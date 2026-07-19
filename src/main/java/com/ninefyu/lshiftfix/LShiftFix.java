@@ -149,8 +149,9 @@ public final class LShiftFix {
      * Shift+letter, etc.).
      */
     private void detectImeHotkeyConflicts() {
-        // In 1.8.9 MCP stable_22, KeyBinding.getKeybinds() returns a Set<KeyBinding>.
-        java.util.Set<KeyBinding> bindings = KeyBinding.getKeybinds();
+        // In 1.8.9, KeyBinding.getKeybinds() returns Set<String> (descriptions),
+        // not KeyBinding instances. Use GameSettings.keyBindings array instead.
+        KeyBinding[] bindings = Minecraft.getMinecraft().gameSettings.keyBindings;
         if (bindings == null) return;
 
         int conflicts = 0;
@@ -164,7 +165,7 @@ public final class LShiftFix {
             // Space as potentially conflicting.
             if (code == Keyboard.KEY_SPACE) {
                 LOGGER.warn("[LShiftFix] " + L10n.format(L10n.HOTKEY_WARNING,
-                    kb.keyDescription, code));
+                    kb.getKeyDescription(), code));
                 conflicts++;
             }
         }
