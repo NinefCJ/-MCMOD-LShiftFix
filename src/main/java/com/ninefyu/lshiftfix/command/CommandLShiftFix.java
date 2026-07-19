@@ -43,7 +43,7 @@ public class CommandLShiftFix extends CommandBase {
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] args) {
+    public void processCommand(ICommandSender sender, String[] args) throws net.minecraft.command.CommandException {
         if (args.length == 0) {
             sendStatus(sender);
             return;
