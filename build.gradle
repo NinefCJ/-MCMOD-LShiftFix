@@ -158,6 +158,22 @@ jar {
 reobf {
     jar {}
 }
+
+// ----------------------------------------------------------------------------
+// Disable Minecraft asset download tasks.
+// Minecraft's asset server returns HTTP 400 for some 1.8.9 assets, which
+// causes getAssets/getAssetIndex to fail. Mod compilation only needs the
+// Minecraft jar (code), not audio/texture assets. These tasks are safe to
+// disable for a build-only environment.
+// ----------------------------------------------------------------------------
+project.afterEvaluate {
+    ['getAssets', 'getAssetIndex', 'getAssetsIndex', 'downloadAssets'].each { name ->
+        def t = tasks.findByName(name)
+        if (t != null) {
+            t.enabled = false
+        }
+    }
+}
 build.finalizedBy 'reobfJar'
 
 // ----------------------------------------------------------------------------
