@@ -75,11 +75,13 @@ minecraft {
 }
 
 // ----------------------------------------------------------------------------
-// Mixin (refmap generation, mixin config declaration)
+// Mixin (refmap generation)
 // ----------------------------------------------------------------------------
+// MixinGradle 0.6 only exposes the 'add' method for refmap configuration.
+// The actual mixin config list is declared in the jar manifest (see jar {}
+// block below) and picked up by MixinBooter at runtime.
 mixin {
-    add    sourceSets.main, "mixins.lshiftfix.refmap.json"
-    config "mixins.lshiftfix.json"
+    add sourceSets.main, "mixins.lshiftfix.refmap.json"
 }
 
 // ----------------------------------------------------------------------------
